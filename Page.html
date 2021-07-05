@@ -5,19 +5,65 @@
         <meta name="viewport" content="width=device-width,
         initial-scale=1.0"/>
         <title style="text-shadow: 0pc;">Morse Encrypter-Decrypter</title>
-        <link rel="stylesheet" href="style.css" />
     </head>
 <body>
-<article>
-    <img href="https://upload.wikimedia.org/wikipedia/commons/b/b5/International_Morse_Code.svg">
-</article>
-</body>
-<body>
-    <li>
-        <a href="Page.html">Press here on the Decrypter</a>
-    </li>
-    <p id="Input"></p>
-    <script src="morse-encrypter.js"></script>
-    <p id="Output"></p>
+    <form oninput="Morse.value=EnglishtoMorse(English.value)">
+        <label for=English>Enter the English code: </label>
+        <input type="text",id="English", name="English">
+        <input type="button",value="Submit",name="Submit">
+        <output name="Morse" ,for="English"></output>
+    </form>
+    <form oninput="English.value=MorsetoEnglish(Morse.value)">
+        <label for="Morse">Enter the Morse code: </label>
+        <input type="text",id="Morse", name="Morse">
+        <input type="button",value="Submit",name="Submit">
+        <output name="English" ,for="Morse"></output>
+    </form>
+    <script>
+    var morseToenglish = {".-": "a", "-...":"b", "-.-.": "c", "-..": "d", ".":"e", "..-.":"f", "--.":"g", "....":"h", "..":"i", ".---":"j", "-.-":"k", ".-..":"l", "--":"m", "-.":"n", "---":"o", ".--.":"p", "--.-":"q", ".-.":"r", "...":"s", "-":"t", "..-":"u", "...-":"v", ".--":"w", "-..-":"x", "-.--":"y", "--..":"z", ".----":"1", "..---":"2", "...--":"3", "....-":"4", ".....":"5", "-....":"6", "--...":"7", "---..":"8", "----.":"9", "-----":"0", "|":" ",};
+
+        function MorsetoEnglish(morseCode){
+          var words = (morseCode).split(' ');
+          var letters = words.map((w) => w.split(' '));
+          var decoded = [];
+        
+          for(var i = 0; i < letters.length; i++){
+            decoded[i] = [];
+            for(var x = 0; x < letters[i].length; x++){
+                if(morseToenglish[letters[i][x]]){
+                    decoded[i].push(morseToenglish[letters[i][x]]);
+                }
+             }
+            }
+        
+          return decoded.map(arr => arr.join('')).join(' ');
+        }
+        function Flipobject(object){
+            var EmptObj = {},
+            temp;
+        
+            for(temp in object){
+                EmptObj[obj[temp]]=temp;
+            }
+            return EmptObj;
+        }
+        
+        function EnglishtoMorse(englishCode){
+            var words = (morseCode).split(' ');
+          var letters = words.map((w) => w.split(' '));
+          var decoded = [];
+        
+          for(var i = 0; i < letters.length; i++){
+            decoded[i] = [];
+            for(var x = 0; x < letters[i].length; x++){
+                if(morseToenglish[letters[i][x]]){
+                    decoded[i].push(Flipobject(morseToenglish[letters[i][x]]));
+                }
+            }
+          }
+        
+          return decoded.map(arr => arr.join('')).join(' ');
+        };
+        </script>
 </body>
 </html>
