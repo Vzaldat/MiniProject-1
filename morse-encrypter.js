@@ -18,7 +18,7 @@ var decodeMorse = function(morseCode){
 }
 function Flipobject(object){
     var EmptObj = {},
-                 temp;
+    var temp;
 
     for(temp in object){
         EmptObj[obj[temp]]=temp;
@@ -42,8 +42,5 @@ var encodeMorse = function(englishCode){
 
   return decoded.map(arr => arr.join('')).join(' ');
 }
-document.getElementById("Input").innerHTML=prompt("Please enter the English code(Else wait for the next prompt)",inputstring);
-document.getElementById("Output").innerHTML=encodeMorse;
-document.getElementById("Input").innerHTML=prompt("Please enter the Morse code here",inputstring);
-document.getElementById("Output").innerHTML=decodeMorse;
+
 
